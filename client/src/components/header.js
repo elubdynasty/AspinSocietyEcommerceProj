@@ -4,7 +4,7 @@ const Header = () => {
     return (
       <header>
         <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
-          <Navbar.Brand href="/">HOME</Navbar.Brand>
+          <Navbar.Brand href="/">MENU</Navbar.Brand>
           {/* Make a ternary operator to display 'MENU' when the screen got smaller */}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
