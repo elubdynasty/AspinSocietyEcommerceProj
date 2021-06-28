@@ -1,27 +1,50 @@
 import { Navbar, Nav, Container } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
 const Header = () => {
     return (
       <header>
         <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
-          <Navbar.Brand href="/">MENU</Navbar.Brand>
-          {/* Make a ternary operator to display 'MENU' when the screen got smaller */}
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="/collections">
-                All Products
-              </Nav.Link>
-              <Nav.Link href="/collections/face-mask">Face Mask</Nav.Link>
-              <Nav.Link href="/collections/jackets-hoodies">
-                Jackets/Hoodies
-              </Nav.Link>
-              <Nav.Link href="/collections/graphic-tees">Graphic Tees</Nav.Link>
-              <Nav.Link href="/collections/headwear">Headwear</Nav.Link>
-              <Nav.Link href="/collections/bags">Bags</Nav.Link>
-              <Nav.Link href="/collections/blogs">Blogs</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
+          <Container>
+            <LinkContainer to="/">
+              <Navbar.Brand>MENU</Navbar.Brand>
+            </LinkContainer>
+            {/* Make a ternary operator to display 'MENU' when the screen got smaller */}
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+              
+                <LinkContainer to="/collections">
+                  <Nav.Link>All Products</Nav.Link>
+                </LinkContainer>
+
+                <LinkContainer to="/collections/face-mask">
+                  <Nav.Link>Face Mask</Nav.Link>
+                </LinkContainer>
+
+                <LinkContainer to="/collections/jackets-hoodies">
+                  <Nav.Link>Jackets/Hoodies</Nav.Link>
+                </LinkContainer>
+
+                <LinkContainer to="/collections/graphic-tees">
+                  <Nav.Link>Graphic Tees</Nav.Link>
+                </LinkContainer>
+
+                <LinkContainer to="/collections/headwear">
+                  <Nav.Link>Headwear</Nav.Link>
+                </LinkContainer>
+
+                <LinkContainer to="/collections/bags">
+                  <Nav.Link>Bags</Nav.Link>
+                </LinkContainer>
+
+                <LinkContainer to="/collections/blogs">
+                  <Nav.Link>Blogs</Nav.Link>
+                </LinkContainer>
+
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
         </Navbar>
       </header>
     );
