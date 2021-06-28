@@ -1,0 +1,30 @@
+{
+  "name": "aspinsocietyecomproject",
+  "version": "1.0.0",
+  "description": "Aspin Society E-commerce App",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon backend/server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elubdynasty/AspinSocietyEcommerceProj.git"
+  },
+  "keywords": [
+    "MERN",
+    "full-stack-development",
+    "RESTFUL-API",
+    "webdevelopment"
+  ],
+  "author": "Leonard Luzon <leonard_luzon2000@yahoo.com> (https://github.com/elubdynasty)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elubdynasty/AspinSocietyEcommerceProj/issues"
+  },
+  "homepage": "https://github.com/elubdynasty/AspinSocietyEcommerceProj#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
