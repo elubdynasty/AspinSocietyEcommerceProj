@@ -23,7 +23,6 @@ const ProductDetail = ({ match }) => {
                 <h3>{product.name}</h3>
               </ListGroup.Item>
 
-              {/* <ListGroup.Item>Price: ${product.price}</ListGroup.Item> */}
 
               <ListGroup.Item>
                 Description: {product.description}
