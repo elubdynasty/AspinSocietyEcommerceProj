@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: "1",
     name: "Aspin Pullover Comfort Fleece Hoodie",
     image: "/static/images/products/fleece_hoodie.png",
     description:
@@ -11,7 +10,6 @@ const products = [
   },
 
   {
-    _id: "2",
     name: "AS Cotton Embroidery Logo Pom Beanie",
     image: "/static/images/products/PomBeanieFront_480x.jpg",
     description:
@@ -22,7 +20,6 @@ const products = [
   },
 
   {
-    _id: "3",
     name: "AS Cotton Rubber Patch Classic Beanie",
     image: "/static/images/products/ClassicBeanieFront_150x150.jpg",
     description:
