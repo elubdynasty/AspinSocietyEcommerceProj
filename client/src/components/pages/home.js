@@ -10,12 +10,12 @@ const Home = () => {
 
     useEffect(() => {
 
-      const FetchProducts = async () => {
+      const getProducts = async () => {
         const { data } = await axios.get('/api/products')
         setProducts(data)
       }
 
-      FetchProducts()
+      getProducts()
     }, [])
 
     return (
