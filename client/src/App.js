@@ -7,7 +7,7 @@ import Search from './components/search'
 import Cart from "./components/cart";
 import Header from './components/header'
 import Footer from './components/footer'
-import NoMatch from './components/pages/no-match' //TODO: make a route guard for this
+import NoMatch from './components/pages/no-match'
 import ProductDetail from './components/pages/productdetail'
 import SearchResults from './components/pages/search-results'
 import Icons from './helpers/icons'
