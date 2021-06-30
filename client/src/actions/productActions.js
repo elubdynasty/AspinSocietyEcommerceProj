@@ -6,7 +6,6 @@ import {
   PROD_LIST_FAIL,
 } from "../constants/productConstants";
 
-//in lieu of useEffect()
 
 export const listProducts = () => async (dispatch) => {
     try {
