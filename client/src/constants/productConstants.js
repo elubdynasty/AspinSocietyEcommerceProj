@@ -1,0 +1,5 @@
+
+export const PROD_LIST_REQ = "PROD_LIST_REQ"
+export const PROD_LIST_SUCCESS = "PROD_LIST_SUCCESS";
+export const PROD_LIST_FAIL = "PROD_LIST_FAIL";
+
