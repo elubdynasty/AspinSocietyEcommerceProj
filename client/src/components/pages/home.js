@@ -2,12 +2,14 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 
-import Product from '../../components/product'
+import Product from '../product'
 import { listProducts } from '../../actions/productActions';
+import Message from '../message';
+import Loader from '../loader';
 
 const Home = () => {
 
-    const dispatch = useDispatch() //instead of using connect, mapstateToProps  etc.
+    const dispatch = useDispatch()
 
     const productList = useSelector(state => state.productList)
 
@@ -24,9 +26,9 @@ const Home = () => {
       <>
         <h3>All Products</h3>
         {loading ? (
-          <h2>Loading...</h2>
+          <Loader />
         ) : error ? (
-          <h4>{error}</h4>
+          <Message variant='danger'>{error}</Message>
         ) : (
           <Row>
             {products.map((product) => (
