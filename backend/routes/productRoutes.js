@@ -16,7 +16,8 @@ productRouter.get("/:id", asyncHandler(async (req, res) => {
   if(product){
       res.json(product);
   } else {
-      res.status(400).json({message: 'Sorry, it didn\'t work'})
+      res.status(404)
+      throw new Error("Sorry, product can't be found")
   }
 }));
 
