@@ -32,7 +32,7 @@ const productSchema = new Schema(
       default: 0,
     },
     countinStock: {
-      type: String,
+      type: Number,
       required: true,
       default: 0,
     },
