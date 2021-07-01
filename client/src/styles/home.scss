@@ -1,15 +1,16 @@
 main {
     min-height: 80vh; 
     
-    .container{
+    .banner {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
 
-        .mr-auto {
-            a {
-                text-transform: uppercase;
-            }
+    .navbar-nav { 
+        
+        a {
+            text-transform: uppercase;
         }
     }
 
