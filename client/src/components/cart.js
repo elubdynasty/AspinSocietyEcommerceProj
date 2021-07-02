@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, ListGroup, Image, Form, Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { addToCart } from "../actions/cartActions"
+import { addToCart, removeFromCart } from "../actions/cartActions";
 import Message from './message'
 
 const Cart = ({match, location, history}) => {
@@ -26,7 +26,8 @@ const Cart = ({match, location, history}) => {
   }, [dispatch, productId, qty])
 
   const removefromCartHandler = id => {
-    console.log('removed')
+    
+    dispatch(removeFromCart(id));
 
   }
 
@@ -95,16 +96,16 @@ const Cart = ({match, location, history}) => {
         )}
       </Col>
 
+               
       <Col md={4}>
         <Card>
-          <ListGroup variant="flush">
+            {cartItems.length === 0 ? null : (<ListGroup variant="flush">
             <ListGroup.Item>
               <h2>
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 items
               </h2>
-              $
-              {cartItems
+              ${cartItems
                 .reduce((acc, item) => acc + item.price * item.qty, 0)
                 .toFixed(2)}
             </ListGroup.Item>
@@ -117,7 +118,7 @@ const Cart = ({match, location, history}) => {
                 onClick={() => checkoutHandler()}
               >Checkout</Button>
             </ListGroup.Item>
-          </ListGroup>
+          </ListGroup>)}
         </Card>
       </Col>
     </Row>
