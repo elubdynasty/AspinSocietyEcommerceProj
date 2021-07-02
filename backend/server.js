@@ -5,19 +5,21 @@ require('dotenv').config()
 const PORT = process.env.PORT || 5000;
 
 const productRouter = require('./routes/productRoutes')
+const userRouter = require("./routes/userRoutes");
 const { NotFound, ErrorHandler } = require('./middleware/errorMiddleware')
 
 connectDB()
 
 const app = express()
 
+app.use(express.json())
 
 app.get('/', (req, res) => {
     res.send('API is running...')
 })
 
 
-app.use("/api/products", productRouter);
+app.use("/api", [productRouter, userRouter]);
 
 app.use(NotFound);
 
