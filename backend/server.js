@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000;
 
 const productRouter = require('./routes/productRoutes')
 const userRouter = require("./routes/userRoutes");
-const { NotFound, ErrorHandler } = require('./middleware/errorMiddleware')
+const { NotFound, ErrorHandler } = require('./middleware/error.middleware')
 
 connectDB()
 
