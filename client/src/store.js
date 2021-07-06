@@ -27,8 +27,13 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
+const shippingAddFromStorage = localStorage.getItem("shippingAdd")
+  ? JSON.parse(localStorage.getItem("shippingAdd"))
+  : {};
+
 const initialState = {
-  cart: { cartItems: cartItemsFromStorage },
+  cart: { cartItems: cartItemsFromStorage, 
+  shippingAdd: shippingAddFromStorage },
   userLogin: { userInfo: userInfoFromStorage },
 };
 

@@ -11,6 +11,7 @@ import Register from "./components/register";
 import Profile from './components/profile';
 import Search from './components/search'
 import Cart from "./components/cart";
+import Shipping from './components/shipping'
 import NavContainer from "./components/navbar";
 import Footer from './components/footer'
 import NoMatch from './components/pages/no-match'
@@ -81,6 +82,7 @@ const App = () => {
             <Route path="/collections/:id" component={ProductDetail} />
             <Route path="/search" component={SearchResults} />
             <Route path="/cart/:id?" component={Cart} />
+            <Route path="/shipping" component={Shipping} />
             <Route component={NoMatch} />
           </Switch>
         </Container>
