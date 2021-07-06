@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import { Container, Nav } from 'react-bootstrap'
+import { Container, Nav, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from './actions/userActions';
 
 import Home from "./components/pages/home";
 import Login from './components/login';
@@ -20,6 +22,16 @@ import Icons from './helpers/icons'
 const App = () => {
 
   Icons();
+
+  const dispatch = useDispatch()
+
+  const userLogin = useSelector(state => state.userLogin);
+  const { userInfo } = userLogin
+
+  const logoutHandler = () => {
+    dispatch(logout())
+  }
+
   return (
     <Router>
       <main className="py-3">
@@ -38,12 +50,24 @@ const App = () => {
                 <FontAwesomeIcon icon="shopping-cart" />
               </Nav.Link>
             </LinkContainer>
-
+            {userInfo ? (
+              <NavDropdown title={userInfo.name} id='username'>
+                <LinkContainer to='/profile'>
+                  <NavDropdown.Item>
+                    Profile
+                  </NavDropdown.Item>
+                </LinkContainer>
+                <NavDropdown.Item onClick={logoutHandler}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : (
             <LinkContainer to="/login">
               <Nav.Link>
                 <FontAwesomeIcon icon="sign-in-alt" />
               </Nav.Link>
             </LinkContainer>
+            )}
           </div>
         </Container>
 
