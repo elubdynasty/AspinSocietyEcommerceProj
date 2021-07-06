@@ -2,3 +2,7 @@ export const USER_LOGIN_REQ = "USER_LOGIN_REQ"
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_FAIL = "USER_LOGIN_FAIL";
 export const USER_LOGOUT = "USER_LOGOUT";
+
+export const USER_REG_REQ = "USER_REG_REQ";
+export const USER_REG_SUCCESS = "USER_REG_SUCCESS";
+export const USER_REG_FAIL = "USER_REG_FAIL";

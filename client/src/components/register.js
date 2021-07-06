@@ -3,20 +3,24 @@ import { Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
-import { login } from '../actions/userActions'
-import FormContainer from './FormContainer'
+import { reg } from "../actions/userActions";
+import FormContainer from "./FormContainer";
 import Message from "./message";
 import Loader from "./loader";
 
-const Login = ({location, history}) => {
+const Register = ({location, history}) => {
+
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState(null);
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const userReg = useSelector((state) => state.userReg);
+  const { loading, error, userInfo } = userReg;
 
   useEffect(() => {
     if(userInfo) {
@@ -26,15 +30,32 @@ const Login = ({location, history}) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(login(email, password))
+
+    if(password !== confirmPassword){
+        setMessage('Passwords do not match')
+    } else {
+        dispatch(reg(name, email, password))
+    }
   };
 
-  return (
-    <FormContainer>
-      <h1>Sign In</h1>
+  return <FormContainer>
+      <h1>Sign Up</h1>
+      {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
+
+        <Form.Group controlId="name">
+          <Form.Label>Name</Form.Label>
+
+          <Form.Control
+            type="name"
+            placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
         <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>
 
@@ -57,21 +78,31 @@ const Login = ({location, history}) => {
           ></Form.Control>
         </Form.Group>
 
+        <Form.Group controlId="confirmPassword">
+          <Form.Label>Confirm Password</Form.Label>
+
+          <Form.Control
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
         <Button type="submit" variant="primary">
-          Sign In
+          Register
         </Button>
       </Form>
 
       <Row>
         <Col>
-          New Customer? {' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-             Register
+          Have an Account? {' '}
+          <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
+             Login
           </Link>
         </Col>
       </Row>
     </FormContainer>
-  );
 };
 
-export default Login;
+export default Register;

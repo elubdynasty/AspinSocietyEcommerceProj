@@ -7,6 +7,7 @@ import { logout } from './actions/userActions';
 
 import Home from "./components/pages/home";
 import Login from './components/login';
+import Register from "./components/register";
 import Search from './components/search'
 import Cart from "./components/cart";
 import NavContainer from "./components/navbar";
@@ -15,7 +16,6 @@ import NoMatch from './components/pages/no-match'
 import ProductDetail from './components/pages/productdetail'
 import SearchResults from './components/pages/search-results'
 import Icons from './helpers/icons'
-
 
 
 
@@ -51,22 +51,20 @@ const App = () => {
               </Nav.Link>
             </LinkContainer>
             {userInfo ? (
-              <NavDropdown title={userInfo.name} id='username'>
-                <LinkContainer to='/profile'>
-                  <NavDropdown.Item>
-                    Profile
-                  </NavDropdown.Item>
+              <NavDropdown title={userInfo.name} id="username">
+                <LinkContainer to="/profile">
+                  <NavDropdown.Item>Profile</NavDropdown.Item>
                 </LinkContainer>
                 <NavDropdown.Item onClick={logoutHandler}>
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
-            <LinkContainer to="/login">
-              <Nav.Link>
-                <FontAwesomeIcon icon="sign-in-alt" />
-              </Nav.Link>
-            </LinkContainer>
+              <LinkContainer to="/login">
+                <Nav.Link>
+                  <FontAwesomeIcon icon="sign-in-alt" />
+                </Nav.Link>
+              </LinkContainer>
             )}
           </div>
         </Container>
@@ -77,6 +75,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
             <Route path="/collections/:id" component={ProductDetail} />
             <Route path="/search" component={SearchResults} />
             <Route path="/cart/:id?" component={Cart} />
