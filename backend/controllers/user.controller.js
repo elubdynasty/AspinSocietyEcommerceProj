@@ -28,7 +28,8 @@ const regUser = asyncHandler(async (req, res) => {
   const userExists = await User.findOne({ email });
 
   if(userExists){
-    res.status(400).json({message: 'User already exists!'})
+    res.status(400)
+    throw new Error("User already exists!");
   }
 
   const user = await User.create({
@@ -48,7 +49,8 @@ const regUser = asyncHandler(async (req, res) => {
     });
 
   } else {
-    res.status(400).json({message: 'Invalid user data'})
+    res.status(400)
+    throw new Error('Invalid user data')
   }
 
 });
@@ -66,10 +68,43 @@ const getUserProfile = asyncHandler(async (req, res) => {
     })
 
   } else {
-    res.status(404).json({message: 'User not found'})
+    res.status(404)
+    throw new Error('User not found')
+  }
+});
+
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+
+    user.name = req.body.name || user.name
+    user.email = req.body.email || user.email
+    
+    if(req.body.password){
+      user.password = req.body.password
+    }
+
+    const updatedUser = await user.save()
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: genToken(updatedUser._id),
+    });
+
+  
+  } else {
+    res.status(404)
+    throw new Error("User not found" );
   }
 });
 
 module.exports = {
-  authUser, getUserProfile, regUser
-}
+  authUser,
+  getUserProfile,
+  regUser,
+  updateUserProfile
+};
