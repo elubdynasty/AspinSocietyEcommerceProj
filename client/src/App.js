@@ -8,6 +8,7 @@ import { logout } from './actions/userActions';
 import Home from "./components/pages/home";
 import Login from './components/login';
 import Register from "./components/register";
+import Profile from './components/profile';
 import Search from './components/search'
 import Cart from "./components/cart";
 import NavContainer from "./components/navbar";
@@ -76,6 +77,7 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/profile" component={Profile} />
             <Route path="/collections/:id" component={ProductDetail} />
             <Route path="/search" component={SearchResults} />
             <Route path="/cart/:id?" component={Cart} />

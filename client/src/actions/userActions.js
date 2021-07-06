@@ -7,7 +7,10 @@ import {
   USER_REG_REQ,
   USER_REG_SUCCESS,
   USER_REG_FAIL,
-  USER_LOGOUT,
+  USER_PROF_REQ,
+  USER_PROF_SUCCESS,
+  USER_PROF_FAIL,
+  USER_LOGOUT
 } from "../constants/userConstants";
 
 export const login = (email, password) => async (dispatch) => {
@@ -84,6 +87,40 @@ export const reg = (name, email, password) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: USER_REG_FAIL,
+      payload:
+        err.res && err.res.data.message ? err.res.data.message : err.message,
+    });
+  }
+};
+
+export const getUserProf = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_PROF_REQ,
+    });
+
+    const { userLogin: { userInfo } } = getState()
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`
+      },
+    };
+
+    const { data } = await axios.get(
+      `/api/users/${id}`, config
+    );
+
+    dispatch({
+      type: USER_PROF_SUCCESS,
+      payload: data,
+    });
+
+ 
+  } catch (err) {
+    dispatch({
+      type: USER_PROF_FAIL,
       payload:
         err.res && err.res.data.message ? err.res.data.message : err.message,
     });

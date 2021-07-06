@@ -6,3 +6,7 @@ export const USER_LOGOUT = "USER_LOGOUT";
 export const USER_REG_REQ = "USER_REG_REQ";
 export const USER_REG_SUCCESS = "USER_REG_SUCCESS";
 export const USER_REG_FAIL = "USER_REG_FAIL";
+
+export const USER_PROF_REQ = "USER_PROF_REQ";
+export const USER_PROF_SUCCESS = "USER_PROF_SUCCESS";
+export const USER_PROF_FAIL = "USER_PROF_FAIL";
