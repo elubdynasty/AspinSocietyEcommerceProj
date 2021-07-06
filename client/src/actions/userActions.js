@@ -10,7 +10,10 @@ import {
   USER_PROF_REQ,
   USER_PROF_SUCCESS,
   USER_PROF_FAIL,
-  USER_LOGOUT
+  USER_UPDATE_PROF_REQ,
+  USER_UPDATE_PROF_SUCCESS,
+  USER_UPDATE_PROF_FAIL,
+  USER_LOGOUT,
 } from "../constants/userConstants";
 
 export const login = (email, password) => async (dispatch) => {
@@ -121,6 +124,38 @@ export const getUserProf = (id) => async (dispatch, getState) => {
   } catch (err) {
     dispatch({
       type: USER_PROF_FAIL,
+      payload:
+        err.res && err.res.data.message ? err.res.data.message : err.message,
+    });
+  }
+};
+
+export const updateUserProf = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_UPDATE_PROF_REQ,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(`/api/users/profile`, user, config);
+
+    dispatch({
+      type: USER_UPDATE_PROF_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: USER_UPDATE_PROF_FAIL,
       payload:
         err.res && err.res.data.message ? err.res.data.message : err.message,
     });

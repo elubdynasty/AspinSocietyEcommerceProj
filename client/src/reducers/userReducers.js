@@ -9,7 +9,10 @@ import {
   USER_REG_FAIL,
   USER_PROF_REQ,
   USER_PROF_SUCCESS,
-  USER_PROF_FAIL
+  USER_PROF_FAIL,
+  USER_UPDATE_PROF_REQ,
+  USER_UPDATE_PROF_SUCCESS,
+  USER_UPDATE_PROF_FAIL
 } from "../constants/userConstants";
 
 
@@ -48,7 +51,7 @@ export const userRegReducer = (state = {}, action) => {
   }
 };
 
-export const userProfReducer = (state = {user: {}}, action) => {
+export const userProfReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case USER_PROF_REQ:
       return { ...state, loading: true };
@@ -57,6 +60,22 @@ export const userProfReducer = (state = {user: {}}, action) => {
       return { loading: false, user: action.payload };
 
     case USER_PROF_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const userUpdateProfReducer = (state = { }, action) => {
+  switch (action.type) {
+    case USER_UPDATE_PROF_REQ:
+      return { loading: true };
+
+    case USER_UPDATE_PROF_SUCCESS:
+      return { loading: false, success: true, userInfo: action.payload };
+
+    case USER_UPDATE_PROF_FAIL:
       return { loading: false, error: action.payload };
 
     default:
