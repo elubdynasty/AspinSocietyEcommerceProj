@@ -4,9 +4,10 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Home from "./components/pages/home";
+import Login from './components/login';
 import Search from './components/search'
 import Cart from "./components/cart";
-import Navbar  from './components/navbar'
+import NavContainer from "./components/navbar";
 import Footer from './components/footer'
 import NoMatch from './components/pages/no-match'
 import ProductDetail from './components/pages/productdetail'
@@ -37,14 +38,21 @@ const App = () => {
                 <FontAwesomeIcon icon="shopping-cart" />
               </Nav.Link>
             </LinkContainer>
+
+            <LinkContainer to="/login">
+              <Nav.Link>
+                <FontAwesomeIcon icon="sign-in-alt" />
+              </Nav.Link>
+            </LinkContainer>
           </div>
         </Container>
 
-        <Navbar />
+        <NavContainer />
 
         <Container>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
             <Route path="/collections/:id" component={ProductDetail} />
             <Route path="/search" component={SearchResults} />
             <Route path="/cart/:id?" component={Cart} />

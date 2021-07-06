@@ -16,11 +16,10 @@ export const login = (email, password) => async (dispatch) => {
         }
 
         const { data } = 
-        await axios.get(
-
-            'api/users/login', 
-            {email, password},
-            config
+        await axios.post(
+          '/api/users/login', 
+          {email, password},
+          config
         )
 
         dispatch({
