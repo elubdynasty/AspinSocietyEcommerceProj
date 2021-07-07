@@ -5,18 +5,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from './actions/userActions';
 
+import NavContainer from "./components/navbar";
 import Home from "./components/pages/home";
+import Footer from "./components/footer";
+import NoMatch from "./components/pages/no-match";
 import Login from './components/login';
 import Register from "./components/register";
+import ProductDetail from "./components/pages/productdetail";
 import Profile from './components/profile';
 import Search from './components/search'
 import Cart from "./components/cart";
 import Shipping from './components/shipping'
-import NavContainer from "./components/navbar";
-import Footer from './components/footer'
-import NoMatch from './components/pages/no-match'
-import ProductDetail from './components/pages/productdetail'
 import SearchResults from './components/pages/search-results'
+import Payment from './components/payment';
 import Icons from './helpers/icons'
 
 
@@ -83,6 +84,7 @@ const App = () => {
             <Route path="/search" component={SearchResults} />
             <Route path="/cart/:id?" component={Cart} />
             <Route path="/shipping" component={Shipping} />
+            <Route path="/payment" component={Payment} />
             <Route component={NoMatch} />
           </Switch>
         </Container>
