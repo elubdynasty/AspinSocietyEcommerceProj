@@ -62,9 +62,9 @@ cart.totalPrice = addDec(
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
-                <strong>Address:</strong>
-                {cart.shippingAdd.address}, {cart.shippingAdd.city},{" "}
-                {cart.shippingAdd.zipcode}, {cart.shippingAdd.country}
+                <strong>Address:</strong> {cart.shippingAdd.address},{" "}
+                {cart.shippingAdd.city}, {cart.shippingAdd.zipcode},{" "}
+                {cart.shippingAdd.country}
               </p>
             </ListGroup.Item>
 
@@ -146,7 +146,7 @@ cart.totalPrice = addDec(
             </ListGroup.Item>
 
             <ListGroup.Item>
-              {error && <Message variant='danger'>{error}</Message>}
+              {error && <Message variant="danger">{error}</Message>}
             </ListGroup.Item>
 
             <ListGroup.Item>
