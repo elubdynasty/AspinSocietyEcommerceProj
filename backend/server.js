@@ -6,7 +6,9 @@ const PORT = process.env.PORT || 5000;
 
 const productRouter = require('./routes/productRoutes')
 const userRouter = require("./routes/userRoutes");
-const { NotFound, ErrorHandler } = require('./middleware/error.middleware')
+const orderRouter = require("./routes/orderRoutes");
+const { NotFound, ErrorHandler } = require('./middleware/error.middleware');
+
 
 connectDB()
 
@@ -19,7 +21,8 @@ app.get('/', (req, res) => {
 })
 
 
-app.use("/api", [productRouter, userRouter]);
+app.use("/api", [productRouter, userRouter, orderRouter]);
+
 
 app.use(NotFound);
 

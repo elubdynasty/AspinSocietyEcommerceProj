@@ -18,8 +18,8 @@ import Cart from "./components/cart";
 import Shipping from './components/shipping'
 import SearchResults from './components/pages/search-results'
 import Payment from './components/payment';
+import Order from "./components/placeOrder";
 import Icons from './helpers/icons'
-
 
 
 const App = () => {
@@ -85,6 +85,7 @@ const App = () => {
             <Route path="/cart/:id?" component={Cart} />
             <Route path="/shipping" component={Shipping} />
             <Route path="/payment" component={Payment} />
+            <Route path="/placeorder" component={Order} />
             <Route component={NoMatch} />
           </Switch>
         </Container>
