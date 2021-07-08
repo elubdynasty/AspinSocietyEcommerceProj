@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const connectDB = require('./config/db')
 
 require('dotenv').config()
@@ -13,6 +14,11 @@ const { NotFound, ErrorHandler } = require('./middleware/error.middleware');
 connectDB()
 
 const app = express()
+
+app.use(cors({
+    origin: "http://127.0.0.1:5000",
+    credentials: true
+}))
 
 app.use(express.json())
 
