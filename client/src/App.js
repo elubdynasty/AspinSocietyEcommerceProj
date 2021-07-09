@@ -5,24 +5,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from './actions/userActions';
 
-import NavContainer from "./components/navbar";
+import NavContainer from "./components/pages/navbar";
 import Home from "./components/pages/home";
-import Footer from "./components/footer";
+import Footer from "./components/pages/footer";
 import NoMatch from "./components/pages/no-match";
-import Login from './components/login';
-import Register from "./components/register";
 import ProductDetail from "./components/pages/productdetail";
-import Profile from './components/profile';
-import Search from './components/search'
-import Cart from "./components/cart";
-import Shipping from './components/shipping'
-import SearchResults from './components/pages/search-results'
-import Payment from './components/payment';
-import Order from "./components/placeOrder";
-import OrderInfo from "./components/orderInfo";
-import Icons from './helpers/icons'
-
-
+import SearchResults from "./components/pages/search-results";
+import Search from './components/pages/search'
+import Cart from "./components/pages/cart";
+import Shipping from "./components/displays/shipping";
+import Payment from "./components/displays/payment";
+import Order from "./components/displays/placeOrder";
+import OrderInfo from "./components/displays/orderInfo";
+import Login from "./components/displays/login";
+import Register from "./components/displays/register";
+import Profile from "./components/displays/profile";
+import Icons from "./helpers/icons";
 
 const App = () => {
 

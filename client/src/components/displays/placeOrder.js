@@ -4,9 +4,9 @@ import { Button, Row, Col, ListGroup, Image} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 
-import Message from "../helpers/message";
-import CheckoutProcedures from "./checkoutProcedures";
-import { createOrder } from '../actions/orderActions'
+import Message from "../../helpers/message";
+import CheckoutProcedures from "../../helpers/checkoutProcedures";
+import { createOrder } from '../../actions/orderActions'
 
 const PlaceOrder = ({ history }) => {
 

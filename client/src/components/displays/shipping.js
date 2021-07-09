@@ -2,9 +2,9 @@ import { useState} from "react";
 import { Form, Button} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
-import FormContainer from "./FormContainer";
-import CheckoutProcedures from "../components/checkoutProcedures";
-import { saveShippingAdd } from '../actions/cartActions'
+import FormContainer from "../../helpers/FormContainer";
+import CheckoutProcedures from "../../helpers/checkoutProcedures";
+import { saveShippingAdd } from '../../actions/cartActions'
 
 
 const Shipping = ({ history }) => {

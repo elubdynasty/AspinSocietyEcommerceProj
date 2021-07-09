@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import { Row, Col, ListGroup, Image} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
-import Message from "../helpers/message";
-import Loader from '../helpers/loader'
-import { getOrderInfo, payOrder } from "../actions/orderActions";
-import { ORDER_PAY_RESET } from "../constants/orderConstants";
+import Message from "../../helpers/message";
+import Loader from '../../helpers/loader'
+import { getOrderInfo, payOrder } from "../../actions/orderActions";
+import { ORDER_PAY_RESET } from "../../constants/orderConstants";
 
 
 const OrderInfo = ({ match }) => {

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, ListGroup, Image, Form, Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { addToCart, removeFromCart } from "../actions/cartActions";
-import Message from '../helpers/message'
+import { addToCart, removeFromCart } from "../../actions/cartActions";
+import Message from '../../helpers/message'
 
 const Cart = ({match, location, history}) => {
 
