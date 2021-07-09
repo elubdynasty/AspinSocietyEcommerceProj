@@ -10,7 +10,8 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -30,12 +31,12 @@
   "homepage": "https://github.com/elubdynasty/AspinSocietyEcommerceProj#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.0"
+    "mongoose": "^5.13.0",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
