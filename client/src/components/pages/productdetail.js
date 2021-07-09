@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 
 import { listProductDetails } from "../../actions/productActions";
-import Message from '../message';
-import Loader from '../loader'
+import Message from "../../helpers/message";
+import Loader from "../../helpers/loader"
 
 const ProductDetail = ({ history, match }) => {
 

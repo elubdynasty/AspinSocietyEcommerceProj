@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { reg } from "../actions/userActions";
 import FormContainer from "./FormContainer";
-import Message from "./message";
-import Loader from "./loader";
+import Message from "../helpers/message";
+import Loader from "../helpers/loader";
 
 const Register = ({location, history}) => {
 

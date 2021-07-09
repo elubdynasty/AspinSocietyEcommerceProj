@@ -3,8 +3,8 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getUserProf, updateUserProf} from "../actions/userActions";
-import Message from "./message";
-import Loader from "./loader";
+import Message from "../helpers/message";
+import Loader from "../helpers/loader";
 
 const Profile = ({location, history}) => {
   const [name, setName] = useState("");

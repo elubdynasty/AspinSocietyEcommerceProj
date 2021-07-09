@@ -4,8 +4,8 @@ import { Row, Col } from 'react-bootstrap'
 
 import Product from '../product'
 import { listProducts } from '../../actions/productActions';
-import Message from '../message';
-import Loader from '../loader';
+import Message from '../../helpers/message';
+import Loader from "../../helpers/loader";
 
 const Home = () => {
 
