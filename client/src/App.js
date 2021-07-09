@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from './actions/userActions';
 
-
+import NavContainer from "./components/pages/navbar";
 import Home from "./components/pages/home";
 import Footer from "./components/pages/footer";
 import NoMatch from "./components/pages/no-match";
@@ -71,8 +71,9 @@ const App = () => {
             )}
           </div>
         </Container>
-        
 
+        <NavContainer />
+        
         <Container>
           <Switch>
             <Route exact path="/" component={Home} />
