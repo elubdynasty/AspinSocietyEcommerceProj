@@ -75,7 +75,7 @@ admin@example.com (Admin)
 jd@example.com (Customer)
 123456
 
-Norah Jones (Customer)
+nj@example.com (Customer)
 123456
 ```
 MIT License
