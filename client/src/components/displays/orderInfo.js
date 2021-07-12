@@ -117,7 +117,7 @@ const OrderInfo = ({ match }) => {
                 {order.paymentType}
               </p>
               {order.isPaid ? (
-                <Message variant="success">Paid on {order.paidAt}</Message>
+                <Message variant="success">Paid on {Date(order.paidAt)}</Message>
               ) : (
                 <Message variant="danger">Not Paid</Message>
               )}
