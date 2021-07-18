@@ -37,7 +37,6 @@ const OrderInfo = ({ match }) => {
     )
   );
 
-  order.shippingFee = addDec(order.itemsPrice > 100 ? 0 : order.itemsPrice * 0.15);
 }
   
 
