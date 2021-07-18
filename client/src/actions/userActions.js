@@ -10,11 +10,13 @@ import {
   USER_PROF_REQ,
   USER_PROF_SUCCESS,
   USER_PROF_FAIL,
+  USER_PROF_RESET,
   USER_UPDATE_PROF_REQ,
   USER_UPDATE_PROF_SUCCESS,
   USER_UPDATE_PROF_FAIL,
   USER_LOGOUT,
 } from "../constants/userConstants";
+import { ORDER_USER_LIST_RESET } from "../constants/orderConstants";
 
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -165,6 +167,8 @@ export const updateUserProf = (user) => async (dispatch, getState) => {
 export const logout = () => (dispatch) => {
 
   localStorage.removeItem('userInfo')
-  dispatch({type: USER_LOGOUT})
+  dispatch({ type: USER_LOGOUT });
+  dispatch({ type: USER_PROF_RESET });
+  dispatch({ type: ORDER_USER_LIST_RESET });
    
   }

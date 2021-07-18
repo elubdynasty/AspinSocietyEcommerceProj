@@ -12,7 +12,8 @@ import {
   USER_PROF_FAIL,
   USER_UPDATE_PROF_REQ,
   USER_UPDATE_PROF_SUCCESS,
-  USER_UPDATE_PROF_FAIL
+  USER_UPDATE_PROF_FAIL,
+  USER_PROF_RESET
 } from "../constants/userConstants";
 
 
@@ -61,6 +62,11 @@ export const userProfReducer = (state = { user: {} }, action) => {
 
     case USER_PROF_FAIL:
       return { loading: false, error: action.payload };
+
+    case USER_PROF_RESET:
+      return {
+        user: {}
+      };
 
     default:
       return state;
