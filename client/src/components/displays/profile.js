@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { Form, Button, Row, Col, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from 'react-router-bootstrap'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { getUserProf, updateUserProf} from "../../actions/userActions";
 import { listOrders } from "../../actions/orderActions";
 import Message from "../../helpers/message";
 import Loader from "../../helpers/loader";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const Profile = ({location, history}) => {
   const [name, setName] = useState("");

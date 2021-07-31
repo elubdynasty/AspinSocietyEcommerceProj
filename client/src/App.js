@@ -20,6 +20,7 @@ import OrderInfo from "./components/displays/orderInfo";
 import Login from "./components/displays/login";
 import Register from "./components/displays/register";
 import Profile from "./components/displays/profile";
+import UserList from './components/displays/userList';
 import Icons from "./helpers/icons";
 
 const App = () => {
@@ -69,9 +70,25 @@ const App = () => {
                 </Nav.Link>
               </LinkContainer>
             )}
+            {userInfo && userInfo.isAdmin && (
+              <NavDropdown title="Admin" id="adminmenu">
+
+                <LinkContainer to="/admin/userlist">
+                  <NavDropdown.Item>Users</NavDropdown.Item>
+                </LinkContainer>
+
+                <LinkContainer to="/admin/productlist">
+                  <NavDropdown.Item>Products</NavDropdown.Item>
+                </LinkContainer>
+
+                <LinkContainer to="/admin/orderlist">
+                  <NavDropdown.Item>Orders</NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
+              
+            )}
           </div>
         </Container>
-        
 
         <Container>
           <Switch>
@@ -86,6 +103,7 @@ const App = () => {
             <Route path="/payment" component={Payment} />
             <Route path="/placeorder" component={Order} />
             <Route path="/order/:id" component={OrderInfo} />
+            <Route path="/admin/userlist" component={UserList} />
             <Route component={NoMatch} />
           </Switch>
         </Container>

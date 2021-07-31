@@ -13,7 +13,10 @@ import {
   USER_UPDATE_PROF_REQ,
   USER_UPDATE_PROF_SUCCESS,
   USER_UPDATE_PROF_FAIL,
-  USER_PROF_RESET
+  USER_PROF_RESET,
+  USER_LIST_REQ,
+  USER_LIST_SUCCESS,
+  USER_LIST_FAIL
 } from "../constants/userConstants";
 
 
@@ -82,6 +85,22 @@ export const userUpdateProfReducer = (state = { }, action) => {
       return { loading: false, success: true, userInfo: action.payload };
 
     case USER_UPDATE_PROF_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const userListReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case USER_LIST_REQ:
+      return { loading: true };
+
+    case USER_LIST_SUCCESS:
+      return { loading: false, users: action.payload };
+
+    case USER_LIST_FAIL:
       return { loading: false, error: action.payload };
 
     default:
