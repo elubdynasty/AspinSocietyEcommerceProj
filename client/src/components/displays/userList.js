@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Message from "../../helpers/message";
 import Loader from "../../helpers/loader";
-import { listUsers } from "../../actions/userActions"
+import { listUsers, deleteUser } from "../../actions/userActions"
 
 const UserList = ({ history }) => {
 
@@ -17,16 +17,22 @@ const UserList = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: successDelete } = userDelete;
+
   useEffect(() => {
    if(userInfo && userInfo.isAdmin){
       dispatch(listUsers());
    } else {
      history.push('/login')
    }
-  }, [dispatch, userInfo, history]);
+  }, [dispatch, userInfo, history, successDelete]);
 
   const deleteHandler = (id) => {
-    console.log('delete')  
+    if (window.confirm("Are you sure?")){
+      dispatch(deleteUser(id));
+    }
+    
   }
   
   return (

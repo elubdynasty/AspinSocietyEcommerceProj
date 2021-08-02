@@ -10,6 +10,7 @@ import {
   userProfReducer,
   userUpdateProfReducer,
   userListReducer,
+  userDeleteReducer,
 } from "./reducers/userReducers";
 import { orderCreateReducer, orderInfoReducer, orderListReducer, orderPayReducer } from "./reducers/orderReducers";
 
@@ -22,10 +23,11 @@ const reducer = combineReducers({
   userProf: userProfReducer,
   userUpdateProf: userUpdateProfReducer,
   userList: userListReducer,
+  userDelete: userDeleteReducer,
   orderCreate: orderCreateReducer,
   orderInfo: orderInfoReducer,
   orderPay: orderPayReducer,
-  orderList: orderListReducer
+  orderList: orderListReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
