@@ -21,6 +21,7 @@ import Register from "./components/displays/register";
 import Profile from "./components/displays/profile";
 import UserList from './components/displays/userList';
 import UserEdit from "./components/displays/userEdit";
+import ProductList from "./components/displays/productList";
 import Icons from "./helpers/icons";
 
 
@@ -104,6 +105,7 @@ const App = () => {
             <Route path="/order/:id" component={OrderInfo} />
             <Route path="/admin/userlist" component={UserList} />
             <Route path="/admin/user/:id/edit" component={UserEdit} />
+            <Route path="/admin/productlist" component={ProductList} />
             <Route component={NoMatch} />
           </Switch>
         </Container>
