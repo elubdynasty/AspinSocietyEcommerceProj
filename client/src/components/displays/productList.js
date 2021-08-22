@@ -6,21 +6,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Message from "../../helpers/message";
 import Loader from "../../helpers/loader";
-// eslint-disable-next-line no-unused-vars
 import { listProducts, deleteProduct } from "../../actions/productActions"
 
 
 const ProductList = ({ history, match }) => {
 
   const dispatch = useDispatch();
+
   const productList = useSelector(state => state.productList)
   const { loading, error, products } = productList;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  //const productDelete = useSelector((state) => state.productDelete);
-  //const { success: successDelete } = productDelete;
+  const productDelete = useSelector((state) => state.productDelete);
+  const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
 
   useEffect(() => {
    if(userInfo && userInfo.isAdmin){
@@ -28,11 +28,11 @@ const ProductList = ({ history, match }) => {
    } else {
      history.push('/login')
    }
-  }, [dispatch, userInfo, history, /*successDelete*/]);
+  }, [dispatch, userInfo, history, successDelete]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")){
-      //dispatch(deleteProduct(id));
+      dispatch(deleteProduct(id));
     }
   }
 
@@ -53,7 +53,8 @@ const ProductList = ({ history, match }) => {
             </Button>
           </Col>
         </Row>
-
+        { loadingDelete && <Loader /> }
+        { errorDelete && <Message variant="danger">{error}</Message> }
         {loading ? (
           <Loader />
         ) : error ? (
