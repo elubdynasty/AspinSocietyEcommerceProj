@@ -8,7 +8,11 @@ import {
   PROD_DETAILS_FAIL,
   PROD_DELETE_REQ,
   PROD_DELETE_SUCCESS,
-  PROD_DELETE_FAIL
+  PROD_DELETE_FAIL,
+  PROD_CREATE_REQ,
+  PROD_CREATE_SUCCESS,
+  PROD_CREATE_FAIL,
+  PROD_CREATE_RESET
 } from "../constants/productConstants";
 
 export const productListReducer = (state={ products: [] }, action) => {
@@ -54,6 +58,25 @@ export const productDeleteReducer = (state = { }, action) => {
 
     case PROD_DELETE_FAIL:
       return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const productCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PROD_CREATE_REQ:
+      return { loading: true };
+
+    case PROD_CREATE_SUCCESS:
+      return { loading: false, success: true, product: action.payload };
+
+    case PROD_CREATE_FAIL:
+      return { loading: false, error: action.payload };
+
+    case PROD_CREATE_RESET:
+      return {};
 
     default:
       return state;

@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Message from "../../helpers/message";
 import Loader from "../../helpers/loader";
-import { listProducts, deleteProduct } from "../../actions/productActions"
+import { listProducts, deleteProduct, createProduct } from "../../actions/productActions"
 
+import { PROD_CREATE_RESET } from '../../constants/productConstants'
 
 const ProductList = ({ history, match }) => {
 
@@ -22,13 +23,27 @@ const ProductList = ({ history, match }) => {
   const productDelete = useSelector((state) => state.productDelete);
   const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
 
+  const productCreate = useSelector((state) => state.productCreate);
+  const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = productCreate;
+  
+  
+  
   useEffect(() => {
-   if(userInfo && userInfo.isAdmin){
-      dispatch(listProducts());
-   } else {
-     history.push('/login')
+
+   dispatch({ type: PROD_CREATE_RESET });
+
+   if(!userInfo.isAdmin){
+     history.push("/login");
    }
-  }, [dispatch, userInfo, history, successDelete]);
+
+   if(successCreate){
+    history.push(`/admin/product/${createdProduct._id}/edit`)
+
+   } else {
+     dispatch(listProducts());
+   }
+
+  }, [dispatch, userInfo, history, successDelete, successCreate, createdProduct]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")){
@@ -37,7 +52,7 @@ const ProductList = ({ history, match }) => {
   }
 
   const createProductHandler = () => {
-      console.log('Product created')
+      dispatch(createProduct());
   }
 
     return (
@@ -53,8 +68,10 @@ const ProductList = ({ history, match }) => {
             </Button>
           </Col>
         </Row>
-        { loadingDelete && <Loader /> }
-        { errorDelete && <Message variant="danger">{error}</Message> }
+        {loadingCreate && <Loader />}
+        {errorCreate && <Message variant="danger">{errorCreate}</Message>}
+        {loadingDelete && <Loader />}
+        {errorDelete && <Message variant="danger">{errorDelete}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (
@@ -74,12 +91,8 @@ const ProductList = ({ history, match }) => {
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
-                  <td>
-                    ${product.price}
-                  </td>
-                  <td>
-                    {product.category}
-                  </td>
+                  <td>${product.price}</td>
+                  <td>{product.category}</td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
                       <Button variant="light" className="btn-sm">
