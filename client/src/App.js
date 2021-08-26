@@ -22,6 +22,7 @@ import Profile from "./components/displays/profile";
 import UserList from './components/displays/userList';
 import UserEdit from "./components/displays/userEdit";
 import ProductList from "./components/displays/productList";
+import ProductEdit from "./components/displays/productEdit"
 import Icons from "./helpers/icons";
 
 
@@ -106,6 +107,7 @@ const App = () => {
             <Route path="/admin/userlist" component={UserList} />
             <Route path="/admin/user/:id/edit" component={UserEdit} />
             <Route path="/admin/productlist" component={ProductList} />
+            <Route path="/admin/product/:id/edit" component={ProductEdit} />
             <Route component={NoMatch} />
           </Switch>
         </Container>
