@@ -13,6 +13,9 @@ import {
   PROD_CREATE_FAIL,
   PROD_CREATE_REQ,
   PROD_CREATE_SUCCESS,
+  PROD_UPDATE_REQ,
+  PROD_UPDATE_SUCCESS,
+  PROD_UPDATE_FAIL
 } from "../constants/productConstants";
 
 
@@ -112,6 +115,36 @@ export const createProduct = () => async (dispatch, getState) => {
   } catch (err) {
     dispatch({
       type: PROD_CREATE_FAIL,
+      payload:
+        err.res && err.res.data.message ? err.res.data.message : err.message,
+    });
+  }
+};
+
+export const updateProduct = (product) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: PROD_UPDATE_REQ });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      "Content-Type": "application/json",
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } =  await axios.put(`/api/products/${product._id}`, product, config);
+
+    dispatch({
+      type: PROD_UPDATE_SUCCESS,
+      payload: data
+    });
+  } catch (err) {
+    dispatch({
+      type: PROD_UPDATE_FAIL,
       payload:
         err.res && err.res.data.message ? err.res.data.message : err.message,
     });

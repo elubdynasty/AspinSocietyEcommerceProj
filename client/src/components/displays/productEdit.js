@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
-import { listProductDetails } from "../../actions/productActions";
+import {
+  listProductDetails,
+  updateProduct
+} from "../../actions/productActions";
 import FormContainer from "../../helpers/FormContainer";
 import Message from "../../helpers/message";
 import Loader from "../../helpers/loader";
+import { PROD_UPDATE_RESET } from "../../constants/productConstants";
 
 const ProductEdit = ({ history, match }) => {
 
@@ -20,36 +24,51 @@ const ProductEdit = ({ history, match }) => {
         const [description, setDescription] = useState("");
 
         const dispatch = useDispatch();
+
         const productDetails = useSelector((state) => state.productDetails);
         const { loading, error, product } = productDetails;
 
-        /*const productUpdate = useSelector((state) => state.productUpdate);
+        const productUpdate = useSelector((state) => state.productUpdate);
         
         const {
           loading: loadingUpdate,
           error: errorUpdate,
           success: successUpdate,
-        } = productUpdate;*/
+        } = productUpdate;
 
         useEffect(() => {
-      
-            if (!product.name || product._id !== productId) {
-              dispatch(listProductDetails(productId));
-            } else {
-              setName(product.name);
-              setPrice(product.price);
-              setImage(product.image);
-              setCategory(product.category);
-              setCountinStock(product.countinStock);
-              setDescription(product.description);
-            }
-          
-        }, [product, dispatch, productId, history]);
+
+          if(successUpdate){
+            dispatch({type: PROD_UPDATE_RESET})
+            history.push('/admin/productlist')
+          } else {
+
+               if (!product.name || product._id !== productId) {
+                 dispatch(listProductDetails(productId));
+               } else {
+                 setName(product.name);
+                 setPrice(product.price);
+                 setImage(product.image);
+                 setCategory(product.category);
+                 setCountinStock(product.countinStock);
+                 setDescription(product.description);
+               }
+          }
+         
+        }, [product, dispatch, productId, history, successUpdate]);
 
         const submitHandler = (e) => {
           e.preventDefault();
 
-          //dispatch(updateProduct({ }));
+          dispatch(updateProduct({ 
+            _id: productId, 
+            name, 
+            price, 
+            category,
+            description,
+            image,
+            countinStock 
+          }));
         };
 
   return (
@@ -60,8 +79,8 @@ const ProductEdit = ({ history, match }) => {
 
       <FormContainer>
         <h1>Edit Product</h1>
-        {/* {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>} */}
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (
