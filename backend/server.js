@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 const productRouter = require('./routes/productRoutes')
 const userRouter = require("./routes/userRoutes");
 const orderRouter = require("./routes/orderRoutes");
+const uploadRouter = require("./routes/uploadRoutes");
 const { NotFound, ErrorHandler } = require('./middleware/error.middleware');
 
 
@@ -25,7 +26,7 @@ app.use(express.json())
 
 
 
-app.use("/api", [productRouter, userRouter, orderRouter]);
+app.use("/api", [productRouter, userRouter, orderRouter, uploadRouter]);
 
 app.get("/api/config/paypal", (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
@@ -45,6 +46,12 @@ if(process.env.NODE_ENV === 'production'){
 
 }
 
+/*the /uploads folder isn't gonna be accessible by default
+ Make it as a static folder so, it can get loaded on the browser */
+
+//const __dirname = path.resolve() for ES6
+
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.use(NotFound);
 
