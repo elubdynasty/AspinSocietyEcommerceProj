@@ -46,12 +46,12 @@ if(process.env.NODE_ENV === 'production'){
 
 }
 
-/*the /uploads folder isn't gonna be accessible by default
+/*the uploads folder isn't gonna be accessible by default
  Make it as a static folder so, it can get loaded on the browser */
 
-//const __dirname = path.resolve() for ES6
+//const __dirname = path.resolve() for ES6 only
 
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
 app.use(NotFound);
 

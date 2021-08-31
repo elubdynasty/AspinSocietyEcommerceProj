@@ -15,8 +15,8 @@ const storage = multer.diskStorage({
 
 function checkFileType(file, cb) {
     const filetypes  = /jpg|jpeg|png/
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase()) //return true/false on matchnames being provided on 'filetypes'
-    const mimetype = filetypes.test(file.mimetype) //checking the mimetype ex: "image/jpeg"
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase()) /*return true/false on matchnames being provided on 'filetypes'*/
+    const mimetype = filetypes.test(file.mimetype) /*checking the mimetype ex: "image/jpeg"*/
 
     if(extname && mimetype) {
 
@@ -35,9 +35,9 @@ const upload = multer({
     
 })  //pass in as the middleware to the route
 
-uploadRouter.route('/uploads').post(upload.single('image'), (req, res) => {
-    res.send(`${req.file.path}`)
-})
+uploadRouter.route("/upload").post(upload.single("image"), (req, res) => {
+  res.send(`/${req.file.path}`);
+});
 
 
 module.exports = uploadRouter;
