@@ -36,7 +36,7 @@ const upload = multer({
 })  //pass in as the middleware to the route
 
 uploadRouter.route("/upload").post(upload.single("image"), (req, res) => {
-  res.send(`/${req.file.path}`);
+  res.send(`/${escape(req.file.path)}`);
 });
 
 
