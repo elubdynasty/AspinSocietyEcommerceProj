@@ -9,7 +9,11 @@
 - Checkout process (shipping, payment method, etc)
 - PayPal / credit card integration
 - Database seeder (products & users)
-
+- User profile w/ orders
+- Admin product management
+- Admin user management
+- Admin order details page
+- Mark orders as delivered option (Admin only)
 
 ## Usage
 
