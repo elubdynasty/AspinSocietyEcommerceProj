@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 import { PayPalButton } from "react-paypal-button-v2";
 import { Link } from "react-router-dom";
-import { Row, Col, ListGroup, Image} from "react-bootstrap";
+import { Row, Col, ListGroup, Image, Button} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import Message from "../../helpers/message";
 import Loader from '../../helpers/loader'
-import { getOrderInfo, payOrder } from "../../actions/orderActions";
-import { ORDER_PAY_RESET } from "../../constants/orderConstants";
+import { getOrderInfo, payOrder, deliverOrder } from "../../actions/orderActions";
+import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from "../../constants/orderConstants";
 
 
-const OrderInfo = ({ match }) => {
+const OrderInfo = ({ match, history }) => {
 
   const orderId = match.params.id
 
@@ -19,11 +19,17 @@ const OrderInfo = ({ match }) => {
 
   const dispatch = useDispatch();
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const orderInfo = useSelector((state) => state.orderInfo);
   const { order, loading, error } = orderInfo;
 
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
+
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
   if(!loading){
     const addDec = (num) => {
@@ -41,7 +47,12 @@ const OrderInfo = ({ match }) => {
   
 
   useEffect(() => {
-   
+
+    if(!userInfo) {
+      history.push('/login')
+    }
+
+
     const addPaypalScript = async () => {
       const { data: clientId } = await axios.get('/api/config/paypal')
       const script = document.createElement("script");
@@ -53,29 +64,28 @@ const OrderInfo = ({ match }) => {
       };
 
       document.body.appendChild(script);
-    }
+    };
 
-
-    if(!order || successPay) {
-      dispatch({type: ORDER_PAY_RESET})
+    if (!order || successPay || successDeliver || order._id !== orderId) {
+      dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(getOrderInfo(orderId));
-
-    } else if(!order.isPaid) {
-
-      if(!window.paypal) {
-        addPaypalScript()
+    } else if (!order.isPaid) {
+      if (!window.paypal) {
+        addPaypalScript();
       } else {
-        setsdkReady(true)
+        setsdkReady(true);
       }
     }
-
-    
-  }, [dispatch, orderId, successPay, order]);
+  }, [userInfo, history, dispatch, orderId, successPay, order, successDeliver]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult));
   }
  
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order));
+  }
 
   return loading ? (
     <Loader />
@@ -103,7 +113,9 @@ const OrderInfo = ({ match }) => {
               </p>
 
               {order.isDelivered ? (
-                <Message variant="success">Delivered on {order.deliveredAt}</Message>
+                <Message variant="success">
+                  Delivered on {Date(order.deliveredAt)}
+                </Message>
               ) : (
                 <Message variant="danger">Not Delivered</Message>
               )}
@@ -116,7 +128,9 @@ const OrderInfo = ({ match }) => {
                 {order.paymentType}
               </p>
               {order.isPaid ? (
-                <Message variant="success">Paid on {Date(order.paidAt)}</Message>
+                <Message variant="success">
+                  Paid on {Date(order.paidAt)}
+                </Message>
               ) : (
                 <Message variant="danger">Not Paid</Message>
               )}
@@ -197,13 +211,25 @@ const OrderInfo = ({ match }) => {
               <ListGroup.Item>
                 {loadingPay && <Loader />}
                 {!sdkReady ? (
-                  <Loader /> 
+                  <Loader />
                 ) : (
-                  <PayPalButton 
+                  <PayPalButton
                     amount={order.totalPrice}
                     onSuccess={successPaymentHandler}
                   />
                 )}
+              </ListGroup.Item>
+            )}
+            {loadingDeliver && <Loader />}
+            {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+              <ListGroup.Item>
+                <Button
+                  type="button"
+                  className="btn btn-block"
+                  onClick={deliverHandler}
+                >
+                  Mark as Delivered
+                </Button>
               </ListGroup.Item>
             )}
           </ListGroup>
