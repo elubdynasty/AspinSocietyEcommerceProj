@@ -7,7 +7,9 @@ import { listProducts } from '../../actions/productActions';
 import Message from '../../helpers/message';
 import Loader from "../../helpers/loader";
 
-const Home = () => {
+const Home = ({ match }) => {
+
+    const keyword = match.params.keyword
 
     const dispatch = useDispatch()
 
@@ -16,9 +18,9 @@ const Home = () => {
     const { loading, error, products } = productList
     
     useEffect(() => {
-      dispatch(listProducts())
+      dispatch(listProducts(keyword))
       
-    }, [dispatch])
+    }, [dispatch, keyword])
 
   
 

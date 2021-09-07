@@ -9,8 +9,7 @@ import Home from "./components/pages/home";
 import Footer from "./components/pages/footer";
 import NoMatch from "./components/pages/no-match";
 import ProductDetail from "./components/pages/productdetail";
-import SearchResults from "./components/pages/search-results";
-import Search from './components/pages/search'
+import SearchBox from './components/pages/searchBox'
 import Cart from "./components/pages/cart";
 import Shipping from "./components/displays/shipping";
 import Payment from "./components/displays/payment";
@@ -51,7 +50,7 @@ const App = () => {
               </Nav.Link>
             </LinkContainer>
 
-            <Search />
+            <Route render={({ history }) => <SearchBox history={history} />} />
 
             <LinkContainer to="/cart">
               <Nav.Link>
@@ -95,11 +94,11 @@ const App = () => {
         <Container>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/search/:keyword" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/profile" component={Profile} />
             <Route path="/collections/:id" component={ProductDetail} />
-            <Route path="/search" component={SearchResults} />
             <Route path="/cart/:id?" component={Cart} />
             <Route path="/shipping" component={Shipping} />
             <Route path="/payment" component={Payment} />
