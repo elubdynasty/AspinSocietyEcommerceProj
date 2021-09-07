@@ -5,6 +5,12 @@ main {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .form-inline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
     .navbar-nav { 
