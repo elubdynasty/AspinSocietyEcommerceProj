@@ -26,7 +26,12 @@ export const productListReducer = (state={ products: [] }, action) => {
         return { loading: true, products: [] };
 
       case PROD_LIST_SUCCESS:
-        return { loading: false, products: action.payload };
+        return {
+          loading: false,
+          products: action.payload.products,
+          pages: action.payload.pages,
+          page: action.payload.page
+        };
 
       case PROD_LIST_FAIL:
         return { loading: false, error: action.payload };
@@ -93,7 +98,7 @@ export const productUpdateReducer = (state = { product: {} }, action) => {
       return { loading: true };
 
     case PROD_UPDATE_SUCCESS:
-      return { loading: false, success: true }; //product: action.payload
+      return { loading: false, success: true };
 
     case PROD_UPDATE_FAIL:
       return { loading: false, error: action.payload };

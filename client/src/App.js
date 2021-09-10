@@ -94,7 +94,9 @@ const App = () => {
         <Container>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/search/:keyword" component={Home} />
+            <Route exact path="/search/:keyword" component={Home} />
+            <Route path="/page/:pageNumber" component={Home} />
+            <Route path="/search/:keyword/page/:pageNumber" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/profile" component={Profile} />
@@ -106,9 +108,11 @@ const App = () => {
             <Route path="/order/:id" component={OrderInfo} />
             <Route path="/admin/userlist" component={UserList} />
             <Route path="/admin/user/:id/edit" component={UserEdit} />
-            <Route path="/admin/productlist" component={ProductList} />
+            <Route exact path="/admin/productlist" component={ProductList} />
+            <Route exact path="/admin/productlist/:pageNumber" component={ProductList} /> 
             <Route path="/admin/product/:id/edit" component={ProductEdit} />
             <Route path="/admin/orderlist" component={OrderList} />
+
             <Route component={NoMatch} />
           </Switch>
         </Container>

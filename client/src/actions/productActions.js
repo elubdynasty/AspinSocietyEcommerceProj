@@ -19,12 +19,14 @@ import {
 } from "../constants/productConstants";
 
 
-export const listProducts = (keyword='') => async (dispatch) => {
+export const listProducts = (keyword='', pageNumber='') => async (dispatch) => {
     try {
 
         dispatch({type: PROD_LIST_REQ})
-
-        const { data } = await axios.get(`/api/products?keyword=${keyword}`);
+      
+        const { data } = await axios.get(
+          `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+        ); //2 or more queries, use '&'
         
         dispatch({
             type: PROD_LIST_SUCCESS,
