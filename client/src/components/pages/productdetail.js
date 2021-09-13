@@ -6,6 +6,7 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import { listProductDetails } from "../../actions/productActions";
 import Message from "../../helpers/message";
 import Loader from "../../helpers/loader"
+import Meta from '../Meta'
 
 const ProductDetail = ({ history, match }) => {
 
@@ -39,6 +40,8 @@ const ProductDetail = ({ history, match }) => {
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : (
+          <>
+          <Meta title={product.name} />
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />
@@ -117,6 +120,7 @@ const ProductDetail = ({ history, match }) => {
               </Card>
             </Col>
           </Row>
+          </>
         )}
       </>
     );

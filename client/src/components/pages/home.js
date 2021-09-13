@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import Product from '../displays/product'
 import { listProducts } from '../../actions/productActions';
 import Message from '../../helpers/message';
 import Loader from "../../helpers/loader";
 import Paginate from '../Paginate';
+import Meta from '../Meta'
 
 const Home = ({ match }) => {
 
@@ -29,25 +31,29 @@ const Home = ({ match }) => {
 
     return (
       <>
+        <Meta />
+        {keyword && <Link to='/' className='btn btn-light'>Go Back</Link> }
         <h3>All Products</h3>
         {loading ? (
           <Loader />
         ) : error ? (
-          <Message variant='danger'>{error}</Message>
+          <Message variant="danger">{error}</Message>
         ) : (
           <>
             <Row>
-                {products.map((product) => (
-                  <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                    <Product product={product} />
-                  </Col>
-                ))}
+              {products.map((product) => (
+                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                  <Product product={product} />
+                </Col>
+              ))}
             </Row>
-            <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
+            <Paginate
+              pages={pages}
+              page={page}
+              keyword={keyword ? keyword : ""}
+            />
           </>
         )}
-        
-        
       </>
     );
 }
