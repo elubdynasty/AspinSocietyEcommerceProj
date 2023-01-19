@@ -11,7 +11,7 @@
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.4.6",
     "morgan": "^1.10.0",
     "multer": "^1.4.3"

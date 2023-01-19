@@ -7,7 +7,7 @@ const Footer = () => {
         <Container>
           <Row>
             <Col className="text-center py-3">
-              &copy;2022, Aspin Society. Powered by LeonardLuzon-MERN
+              &copy;{new Date().getFullYear()}, Aspin Society. Powered by LeonardLuzon-MERN
             </Col>
           </Row>
         </Container>
