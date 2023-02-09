@@ -11,7 +11,7 @@
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm ci --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
