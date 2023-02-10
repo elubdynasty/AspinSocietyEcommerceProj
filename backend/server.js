@@ -25,7 +25,9 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.json())
 
-app.use(cors({origin: '*'}))
+app.use(cors({
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
+}))
 
 app.use("/api", [productRouter, userRouter, orderRouter, uploadRouter]);
 
