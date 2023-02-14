@@ -56,7 +56,7 @@ cd client
 npm run build
 ```
 
-There is a Heroku postbuild script @ the package.json, whenever you push it to Heroku for deployment, no need to build it manually. 
+There is a Render postbuild script @ the package.json, whenever you push it to Render for deployment, no need to build it manually. 
 
 ### Seed Database
 
